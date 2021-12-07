@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Doctor-profile</title>
+</head>
+<body>
+    <form action="/doctor-profile" method="post">
+        <input type="hidden" name="doctorEmail" th:value="${doctorEmail}">
+        <input th:placeholder="${lastname}" name="lastname"/>
+        <input th:placeholder="${firstname}" name="firstname"/>
+        <input th:placeholder="${secondname}" name="secondname"/>
+        <select name="specialization">
+            <option th:value="${specialization}" th:text="${specialization}"/>
+            <option th:each="spec : ${specialisations}"
+                    th:value="${spec.toString()}"
+                    th:text="${spec.toString()}">
+            </option>
+        </select>
+        <div th:switch="${monday}">
+            <input th:case="'true'" type="checkbox" name="monday" value="true" checked/>
+            <input th:case="*" type="checkbox" name="monday" value="true"/>
+        </div>
+
+        <button type="submit">Сохранить</button>
+    </form>
+</body>
+</html>
